@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "entity-component-system",
+  "scripts": {
+    "start": "snowpack dev"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5",
+    "snowpack": "^2.5.3"
+  }
+}
