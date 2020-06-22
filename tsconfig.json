@@ -5,6 +5,8 @@
     "paths": {
       "src/*": ["src/*"],
       "public/*": ["public/*"]
-    }
+    },
+    "strictNullChecks": true,
+    "noImplicitAny": true
   }
 }
