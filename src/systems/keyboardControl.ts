@@ -20,13 +20,13 @@ const keyboardControl = () => {
     if (!position) return;
 
     if (key === "ArrowRight") {
-      position.x += 1;
+      position.x += 2;
     } else if (key === "ArrowLeft") {
-      position.x -= 1;
+      position.x -= 2;
     } else if (key === "ArrowUp") {
-      position.y -= 1;
+      position.y -= 2;
     } else if (key === "ArrowDown") {
-      position.y += 1;
+      position.y += 2;
     }
   });
 };
