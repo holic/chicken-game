@@ -1,6 +1,5 @@
 import { entitiesByComponent } from "../entities/Entity";
-import Position from "../components/Position";
-import Wanderer, { Direction } from "../components/Wanderer";
+import Position, { Direction } from "../components/Position";
 import sprite from "../sprite";
 
 const width = 200;
@@ -33,20 +32,17 @@ const render = () => {
 
   const entities = entitiesByComponent[Position.name] || [];
   entities.forEach((entity) => {
-    const { x, y } = <Position>entity.components[Position.name];
+    const { x, y, facing } = <Position>entity.components[Position.name];
 
     let spriteSourceY = 0;
-    if (entity.components[Wanderer.name]) {
-      const { direction } = <Wanderer>entity.components[Wanderer.name];
-      if (direction === Direction.Down) {
-        spriteSourceY = 0;
-      } else if (direction === Direction.Left) {
-        spriteSourceY = spriteHeight;
-      } else if (direction === Direction.Right) {
-        spriteSourceY = spriteHeight * 2;
-      } else if (direction === Direction.Up) {
-        spriteSourceY = spriteHeight * 3;
-      }
+    if (facing === Direction.Down) {
+      spriteSourceY = 0;
+    } else if (facing === Direction.Left) {
+      spriteSourceY = spriteHeight;
+    } else if (facing === Direction.Right) {
+      spriteSourceY = spriteHeight * 2;
+    } else if (facing === Direction.Up) {
+      spriteSourceY = spriteHeight * 3;
     }
 
     context.imageSmoothingEnabled = false;
