@@ -2,8 +2,8 @@ import { entitiesByComponent } from "../entities/Entity";
 import Position, { Direction } from "../components/Position";
 import sprite from "../sprite";
 
-const width = 200;
-const height = 200;
+const width = 400;
+const height = 400;
 const deviceRatio = window.devicePixelRatio;
 const scale = 2;
 
