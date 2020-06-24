@@ -6,8 +6,10 @@ import render from "./systems/render";
 import keyboardControl from "./systems/keyboardControl";
 import wander from "./systems/wander";
 
-new Entity([new Position(), new PlayerControlled()]);
-new Entity([new Position(100, 100), new Wanderer()]);
+const player = new Entity([new Position(), new PlayerControlled()]);
+const npc = new Entity([new Position(100, 100), new Wanderer()]);
+
+console.log(player, npc);
 
 const systems = [render, keyboardControl, wander];
 
