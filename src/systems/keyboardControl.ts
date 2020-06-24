@@ -1,5 +1,5 @@
 import { entitiesByComponent } from "../entities/Entity";
-import Position from "../components/Position";
+import Position, { Direction } from "../components/Position";
 import PlayerControlled from "src/components/PlayerControlled";
 
 let key: string | null = null;
@@ -20,12 +20,16 @@ const keyboardControl = () => {
     if (!position) return;
 
     if (key === "ArrowRight") {
+      position.facing = Direction.Right;
       position.x += 2;
     } else if (key === "ArrowLeft") {
+      position.facing = Direction.Left;
       position.x -= 2;
     } else if (key === "ArrowUp") {
+      position.facing = Direction.Up;
       position.y -= 2;
     } else if (key === "ArrowDown") {
+      position.facing = Direction.Down;
       position.y += 2;
     }
   });
