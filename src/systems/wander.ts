@@ -1,6 +1,6 @@
 import { entitiesByComponent } from "../entities/Entity";
 import Position from "../components/Position";
-import Wanderer, { Direction, directions } from "src/components/Wanderer";
+import Wanderer, { Direction, directions } from "../components/Wanderer";
 
 const rand = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min + 1)) + min;

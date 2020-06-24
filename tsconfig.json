@@ -2,10 +2,6 @@
   "compilerOptions": {
     "target": "ES6",
     "baseUrl": ".",
-    "paths": {
-      "src/*": ["src/*"],
-      "public/*": ["public/*"]
-    },
     "strictNullChecks": true,
     "noImplicitAny": true
   }

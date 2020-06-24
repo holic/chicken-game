@@ -1,5 +1,6 @@
 import { entitiesByComponent } from "../entities/Entity";
 import Position from "../components/Position";
+import Wanderer, { Direction } from "../components/Wanderer";
 import sprite from "../sprite";
 
 const width = 200;
@@ -34,11 +35,25 @@ const render = () => {
   entities.forEach((entity) => {
     const { x, y } = <Position>entity.components[Position.name];
 
+    let spriteSourceY = 0;
+    if (entity.components[Wanderer.name]) {
+      const { direction } = <Wanderer>entity.components[Wanderer.name];
+      if (direction === Direction.Down) {
+        spriteSourceY = 0;
+      } else if (direction === Direction.Left) {
+        spriteSourceY = spriteHeight;
+      } else if (direction === Direction.Right) {
+        spriteSourceY = spriteHeight * 2;
+      } else if (direction === Direction.Up) {
+        spriteSourceY = spriteHeight * 3;
+      }
+    }
+
     context.imageSmoothingEnabled = false;
     context.drawImage(
       sprite,
       0,
-      0,
+      spriteSourceY,
       spriteWidth,
       spriteHeight,
       x - Math.floor((spriteWidth * deviceRatio * scale) / 2),
