@@ -5,7 +5,7 @@ import Wanderer from "../components/Wanderer";
 const rand = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
-const wander = (delta: number) => {
+const wander = (delta: number, time: number) => {
   const entities = entitiesByComponent[Wanderer.name] || [];
   entities.forEach((entity) => {
     if (rand(1, 100) > 5) return;
@@ -24,12 +24,16 @@ const wander = (delta: number) => {
       // walk in the current direction
       if (position.facing === Direction.Up) {
         position.y -= 2;
+        position.lastMovement = time;
       } else if (position.facing === Direction.Down) {
         position.y += 2;
+        position.lastMovement = time;
       } else if (position.facing === Direction.Left) {
         position.x -= 2;
+        position.lastMovement = time;
       } else if (position.facing === Direction.Right) {
         position.x += 2;
+        position.lastMovement = time;
       }
     }
   });

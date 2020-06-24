@@ -6,7 +6,7 @@ import render from "./systems/render";
 import keyboardControl from "./systems/keyboardControl";
 import wander from "./systems/wander";
 
-const player = new Entity([new Position(), new PlayerControlled()]);
+const player = new Entity([new Position(30, 30), new PlayerControlled()]);
 const npc = new Entity([new Position(100, 100), new Wanderer()]);
 
 console.log(player, npc);
@@ -21,7 +21,7 @@ const gameLoop = () => {
   lastTime = now;
 
   systems.forEach((system) => {
-    system(delta);
+    system(delta, now);
   });
 
   requestAnimationFrame(gameLoop);

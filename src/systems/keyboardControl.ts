@@ -13,7 +13,7 @@ document.addEventListener("keyup", (event) => {
   key = null;
 });
 
-const keyboardControl = () => {
+const keyboardControl = (delta: number, time: number) => {
   const entities = entitiesByComponent[PlayerControlled.name] || [];
   entities.forEach((entity) => {
     const position = <Position | null>entity.components[Position.name];
@@ -22,15 +22,19 @@ const keyboardControl = () => {
     if (key === "ArrowRight") {
       position.facing = Direction.Right;
       position.x += 2;
+      position.lastMovement = time;
     } else if (key === "ArrowLeft") {
       position.facing = Direction.Left;
       position.x -= 2;
+      position.lastMovement = time;
     } else if (key === "ArrowUp") {
       position.facing = Direction.Up;
       position.y -= 2;
+      position.lastMovement = time;
     } else if (key === "ArrowDown") {
       position.facing = Direction.Down;
       position.y += 2;
+      position.lastMovement = time;
     }
   });
 };

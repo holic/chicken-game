@@ -18,6 +18,7 @@ class Position extends Component {
   x: number;
   y: number;
   facing: Direction;
+  lastMovement: number;
 
   constructor(
     x: number = 0,
@@ -28,6 +29,7 @@ class Position extends Component {
     this.x = x;
     this.y = y;
     this.facing = facing;
+    this.lastMovement = 0;
   }
 }
 

@@ -30,7 +30,22 @@ const render = () => {
   // reset
   context.clearRect(0, 0, canvas.width, canvas.height);
 
-  const entities = entitiesByComponent[Position.name] || [];
+  const entities = (entitiesByComponent[Position.name] || []).slice();
+
+  entities.sort((entityA, entityB) => {
+    const { y: ay, lastMovement: ax } = <Position>(
+      entityA.components[Position.name]
+    );
+    const { y: by, lastMovement: bx } = <Position>(
+      entityB.components[Position.name]
+    );
+
+    if (ay !== by) {
+      return ay - by;
+    }
+    return ax - bx;
+  });
+
   entities.forEach((entity) => {
     const { x, y, facing } = <Position>entity.components[Position.name];
 
