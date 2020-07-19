@@ -2,15 +2,14 @@ import { entitiesByComponent } from "../entities/Entity";
 import Position, { Direction } from "../components/Position";
 import PlayerControlled from "src/components/PlayerControlled";
 
-let key: string | null = null;
+const keysDown = new Set<string>();
 
 document.addEventListener("keydown", (event) => {
-  // console.log("event.key", event.key);
-  key = event.key;
+  keysDown.add(event.key);
 });
 
 document.addEventListener("keyup", (event) => {
-  key = null;
+  keysDown.delete(event.key);
 });
 
 const keyboardControl = (delta: number, time: number) => {
@@ -19,19 +18,19 @@ const keyboardControl = (delta: number, time: number) => {
     const position = <Position | null>entity.components[Position.name];
     if (!position) return;
 
-    if (key === "ArrowRight") {
+    if (keysDown.has("ArrowRight")) {
       position.facing = Direction.Right;
       position.x += 2;
       position.lastMovement = time;
-    } else if (key === "ArrowLeft") {
+    } else if (keysDown.has("ArrowLeft")) {
       position.facing = Direction.Left;
       position.x -= 2;
       position.lastMovement = time;
-    } else if (key === "ArrowUp") {
+    } else if (keysDown.has("ArrowUp")) {
       position.facing = Direction.Up;
       position.y -= 2;
       position.lastMovement = time;
-    } else if (key === "ArrowDown") {
+    } else if (keysDown.has("ArrowDown")) {
       position.facing = Direction.Down;
       position.y += 2;
       position.lastMovement = time;
