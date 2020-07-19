@@ -1,6 +1,6 @@
 import { entitiesByComponent } from "../entities/Entity";
 import Position, { Direction } from "../components/Position";
-import sprite from "../sprite";
+import spriteSheet from "../spriteSheet";
 
 const width = 400;
 const height = 400;
@@ -62,7 +62,7 @@ const render = () => {
 
     context.imageSmoothingEnabled = false;
     context.drawImage(
-      sprite,
+      spriteSheet,
       0,
       spriteSourceY,
       spriteWidth,
