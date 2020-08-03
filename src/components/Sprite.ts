@@ -68,8 +68,8 @@ class Sprite extends Component {
   }
 
   update(delta: number, time: number) {
-    // Pin to 8 FPS
-    if (time - this.lastFrameUpdate < 1000 / 8) {
+    // Pin to 12 FPS
+    if (time - this.lastFrameUpdate < 1000 / 12) {
       return;
     }
 
