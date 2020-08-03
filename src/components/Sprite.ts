@@ -6,6 +6,7 @@ class Sprite extends Component {
   spriteSheet: SpriteSheet;
   animation: number[];
   frame: number = 0;
+  lastFrameUpdate: number = 0;
 
   constructor(spriteSheet: string, animation: string) {
     super();

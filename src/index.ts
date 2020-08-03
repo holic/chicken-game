@@ -9,13 +9,13 @@ import wander from "./systems/wander";
 
 const player = new Entity([
   new Position(30, 30),
-  new Sprite("leghornChick", "idleDown"),
+  new Sprite("leghornChick", "walkDown"),
   new PlayerControlled(),
 ]);
 
 const npc = new Entity([
-  new Position(100, 100),
-  new Sprite("leghornChick", "idleDown"),
+  new Position(60, 60),
+  new Sprite("leghornChick", "walkDown"),
   new Wanderer(),
 ]);
 

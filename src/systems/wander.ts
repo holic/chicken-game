@@ -23,16 +23,16 @@ const wander = (delta: number, time: number) => {
     } else {
       // walk in the current direction
       if (position.facing === Direction.Up) {
-        position.y -= 2;
+        position.y -= 1;
         position.lastMovement = time;
       } else if (position.facing === Direction.Down) {
-        position.y += 2;
+        position.y += 1;
         position.lastMovement = time;
       } else if (position.facing === Direction.Left) {
-        position.x -= 2;
+        position.x -= 1;
         position.lastMovement = time;
       } else if (position.facing === Direction.Right) {
-        position.x += 2;
+        position.x += 1;
         position.lastMovement = time;
       }
     }

@@ -10,7 +10,7 @@ const canvas =
     return el;
   })();
 
-const render = () => {
+const render = (delta: number, time: number) => {
   const context = canvas.getContext("2d");
   if (!context) return;
 
@@ -31,8 +31,14 @@ const render = () => {
   });
 
   entities.forEach((entity) => {
+    const sprite = entity.getComponent(Sprite);
+    if (time - sprite.lastFrameUpdate > 1000 / 8) {
+      sprite.frame = (sprite.frame + 1) % sprite.animation.length;
+      sprite.lastFrameUpdate = time;
+    }
+
     const { x, y, facing } = entity.getComponent(Position);
-    const { spriteSheet, animation, frame } = entity.getComponent(Sprite);
+    const { spriteSheet, animation, frame } = sprite;
 
     const width = spriteSheet.frameWidth;
     const height = spriteSheet.frameHeight;
