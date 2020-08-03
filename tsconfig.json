@@ -4,6 +4,7 @@
     "target": "ES6",
     "baseUrl": ".",
     "strictNullChecks": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true
   }
 }

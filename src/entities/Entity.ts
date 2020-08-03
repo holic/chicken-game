@@ -2,6 +2,8 @@ import Component from "../components/Component";
 
 let counter = 0;
 
+const entities: Entity[] = [];
+
 interface EntitiesByComponent {
   [componentName: string]: Entity[];
 }
@@ -16,6 +18,7 @@ class Entity {
     components.forEach((component) => {
       this.addComponent(component);
     });
+    entities.push(this);
   }
 
   // TODO: decide if this should be exposed
@@ -27,7 +30,16 @@ class Entity {
       entitiesByComponent[component.name] || [];
     entitiesByComponent[component.name].push(this);
   }
+
+  getComponent<T extends Component>(component: new (...args: any[]) => T): T {
+    return <T>this.components[component.name];
+  }
 }
 
+const entitiesWithComponents = (components: Component[]): Entity[] =>
+  entities.filter((entity) =>
+    components.every((component) => entity.components[component.name])
+  );
+
 export default Entity;
-export { entitiesByComponent };
+export { entitiesByComponent, entitiesWithComponents };
