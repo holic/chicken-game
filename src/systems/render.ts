@@ -60,8 +60,8 @@ const render = (delta: number, time: number) => {
       sourceY,
       width,
       height,
-      x,
-      y,
+      x - Math.floor(width / 2),
+      y - height + 1,
       width,
       height
     );
