@@ -28,6 +28,18 @@ const init = async () => {
     frameWidth: 11,
     frameHeight: 11,
     animations: {
+      idleDown: {
+        frames: [0],
+      },
+      idleLeft: {
+        frames: [3],
+      },
+      idleRight: {
+        frames: [6],
+      },
+      idleUp: {
+        frames: [9],
+      },
       walkDown: {
         frames: [0, 1, 0, 2, 0, 1, 0, 0],
         frameRate: 8,
@@ -50,42 +62,16 @@ const init = async () => {
   const { canvas, context } = kontra.init(document.querySelector("canvas"));
 
   const player = kontra.Sprite({
-    x: 100,
-    y: 100,
-    width: spriteSheet.frame.width * 8,
-    height: spriteSheet.frame.height * 8,
-    animations: spriteSheet.animations,
+    x: 12,
+    y: 12,
+    width: spriteSheet.frame.width,
+    height: spriteSheet.frame.height,
     currentAnimation: spriteSheet.animations.walkDown.clone(),
   });
 
-  const player2 = kontra.Sprite({
-    x: 200,
-    y: 100,
-    width: spriteSheet.frame.width * 8,
-    height: spriteSheet.frame.height * 8,
-    animations: spriteSheet.animations,
-    currentAnimation: spriteSheet.animations.walkLeft.clone(),
-  });
+  console.log(player);
 
-  const player3 = kontra.Sprite({
-    x: 300,
-    y: 100,
-    width: spriteSheet.frame.width * 8,
-    height: spriteSheet.frame.height * 8,
-    animations: spriteSheet.animations,
-    currentAnimation: spriteSheet.animations.walkRight.clone(),
-  });
-
-  const player4 = kontra.Sprite({
-    x: 400,
-    y: 100,
-    width: spriteSheet.frame.width * 8,
-    height: spriteSheet.frame.height * 8,
-    animations: spriteSheet.animations,
-    currentAnimation: spriteSheet.animations.walkUp.clone(),
-  });
-
-  const entities = [player, player2, player3, player4];
+  const entities = [player];
 
   const loop = kontra.GameLoop({
     update() {

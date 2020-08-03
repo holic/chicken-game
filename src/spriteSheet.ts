@@ -1,8 +1,17 @@
-const spriteSheet = new Image();
+class SpriteSheet {
+  image: HTMLImageElement;
+  loaded: boolean;
 
-spriteSheet.src = "/Leghorn_lv1_Move.png";
-spriteSheet.onload = () => {
-  spriteSheet.dataset.loaded = "true";
-};
+  constructor(imagePath: string) {
+    this.image = new Image();
+    this.image.onload = () => {
+      this.loaded = true;
+    };
+    this.image.onerror = (error) => {
+      throw error;
+    };
+    this.image.src = imagePath;
+  }
+}
 
-export default spriteSheet;
+export default SpriteSheet;
