@@ -1,40 +1,35 @@
-import { entitiesByComponent } from "../entities/Entity";
-import Position, { Direction, directions } from "../components/Position";
+import { entitiesWithComponents } from "../entities/Entity";
+import Sprite, { Facing, State } from "../components/Sprite";
 import Wanderer from "../components/Wanderer";
 
 const rand = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
 const wander = (delta: number, time: number) => {
-  const entities = entitiesByComponent[Wanderer.name] || [];
+  const entities = entitiesWithComponents([Wanderer, Sprite]);
   entities.forEach((entity) => {
     if (rand(1, 100) > 5) return;
 
-    const position = <Position | null>entity.components[Position.name];
-    if (!position) return;
+    const sprite = entity.getComponent(Sprite);
+    if (rand(1, 100) > 20) {
+      sprite.requestedState = State.Idle;
+      return;
+    }
 
     if (rand(0, 1)) {
-      // change direction
-      const index = directions.indexOf(position.facing);
-      const rotation = rand(-1, 1);
-      const newIndex =
-        (index + rotation + directions.length) % directions.length;
-      position.facing = directions[newIndex];
+      sprite.requestedFacing = Facing.Right;
+      sprite.requestedState = State.Walking;
+    } else if (rand(0, 1)) {
+      sprite.requestedFacing = Facing.Left;
+      sprite.requestedState = State.Walking;
+    } else if (rand(0, 1)) {
+      sprite.requestedFacing = Facing.Up;
+      sprite.requestedState = State.Walking;
+    } else if (rand(0, 1)) {
+      sprite.requestedFacing = Facing.Down;
+      sprite.requestedState = State.Walking;
     } else {
-      // walk in the current direction
-      if (position.facing === Direction.Up) {
-        position.y -= 1;
-        position.lastMovement = time;
-      } else if (position.facing === Direction.Down) {
-        position.y += 1;
-        position.lastMovement = time;
-      } else if (position.facing === Direction.Left) {
-        position.x -= 1;
-        position.lastMovement = time;
-      } else if (position.facing === Direction.Right) {
-        position.x += 1;
-        position.lastMovement = time;
-      }
+      sprite.requestedState = State.Idle;
     }
   });
 };
