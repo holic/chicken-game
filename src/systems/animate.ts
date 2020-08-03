@@ -6,11 +6,7 @@ const animate = (delta: number, time: number) => {
 
   entities.forEach((entity) => {
     const sprite = entity.getComponent(Sprite);
-
-    if (time - sprite.lastFrameUpdate > 1000 / 8) {
-      sprite.frame = (sprite.frame + 1) % sprite.animation.length;
-      sprite.lastFrameUpdate = time;
-    }
+    sprite.update(delta, time);
   });
 };
 

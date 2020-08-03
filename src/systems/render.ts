@@ -33,11 +33,12 @@ const render = () => {
   entities.forEach((entity) => {
     const { x, y, facing } = entity.getComponent(Position);
     const { spriteSheet, animation, frame } = entity.getComponent(Sprite);
+    if (!animation) return;
 
     const width = spriteSheet.frameWidth;
     const height = spriteSheet.frameHeight;
 
-    const animationFrame = animation[frame];
+    const animationFrame = spriteSheet.animations[animation][frame];
     const framesPerRow = Math.floor(spriteSheet.image.width / width);
     const frameX = animationFrame % framesPerRow;
     const frameY = Math.floor(animationFrame / framesPerRow);
