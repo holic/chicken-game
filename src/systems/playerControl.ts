@@ -1,4 +1,4 @@
-import { entitiesWithComponents } from "../entities/Entity";
+import { entitiesForComponents } from "../entities/Entity";
 import Position from "../components/Position";
 import PlayerControlled from "../components/PlayerControlled";
 import Sprite, { Facing, State } from "../components/Sprite";
@@ -18,7 +18,7 @@ window.addEventListener("blur", () => {
 });
 
 const playerControl = (delta: number, time: number) => {
-  const entities = entitiesWithComponents([PlayerControlled, Position, Sprite]);
+  const entities = entitiesForComponents([PlayerControlled, Position, Sprite]);
   entities.forEach((entity) => {
     const position = entity.getComponent(Position);
     const sprite = entity.getComponent(Sprite);

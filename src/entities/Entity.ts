@@ -36,10 +36,10 @@ class Entity {
   }
 }
 
-const entitiesWithComponents = (components: Component[]): Entity[] =>
+const entitiesForComponents = (components: Component[]): Entity[] =>
   entities.filter((entity) =>
     components.every((component) => entity.components[component.name])
   );
 
 export default Entity;
-export { entitiesByComponent, entitiesWithComponents };
+export { entitiesByComponent, entitiesForComponents };

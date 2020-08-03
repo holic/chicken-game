@@ -1,5 +1,5 @@
-import { entitiesWithComponents } from "../entities/Entity";
-import Position, { Direction } from "../components/Position";
+import { entitiesForComponents } from "../entities/Entity";
+import Position from "../components/Position";
 import Sprite from "../components/Sprite";
 
 const canvas =
@@ -26,7 +26,7 @@ const render = (delta: number, time: number) => {
   context.clearRect(0, 0, canvas.width, canvas.height);
   context.imageSmoothingEnabled = false;
 
-  const entities = entitiesWithComponents([Position, Sprite]);
+  const entities = entitiesForComponents([Position, Sprite]);
 
   entities.sort((entityA, entityB) => {
     const { y: ay, lastMovement: ax } = entityA.getComponent(Position);
@@ -39,7 +39,7 @@ const render = (delta: number, time: number) => {
   });
 
   entities.forEach((entity) => {
-    const { x, y, facing } = entity.getComponent(Position);
+    const { x, y } = entity.getComponent(Position);
     const { spriteSheet, animation, frame } = entity.getComponent(Sprite);
     if (!animation) return;
 

@@ -1,4 +1,4 @@
-import { entitiesWithComponents } from "../entities/Entity";
+import { entitiesForComponents } from "../entities/Entity";
 import Sprite, { Facing, State } from "../components/Sprite";
 import Wanderer from "../components/Wanderer";
 
@@ -6,7 +6,7 @@ const rand = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
 const wander = (delta: number, time: number) => {
-  const entities = entitiesWithComponents([Wanderer, Sprite]);
+  const entities = entitiesForComponents([Wanderer, Sprite]);
   entities.forEach((entity) => {
     if (rand(1, 100) > 5) return;
 

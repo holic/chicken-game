@@ -1,7 +1,7 @@
 import Component from "./Component";
 import assets from "../assets";
 import SpriteSheet from "../assets/SpriteSheet";
-import { entitiesWithComponents } from "../entities/Entity";
+import { entitiesForComponents } from "../entities/Entity";
 import Position from "./Position";
 
 enum State {
@@ -62,12 +62,6 @@ class Sprite extends Component {
     }
   }
 
-  get entity() {
-    const entities = entitiesWithComponents([Sprite]);
-    const entity = entities.find((ent) => ent.getComponent(Sprite) === this);
-    return entity;
-  }
-
   reset() {
     this.frame = 0;
     this.lastFrameUpdate = 0;
@@ -90,7 +84,7 @@ class Sprite extends Component {
       (this.facing === Facing.Down && this.frame === 3) ||
       (this.facing !== Facing.Down && this.frame === 2)
     ) {
-      entitiesWithComponents([Position, Sprite])
+      entitiesForComponents([Position, Sprite])
         .filter((entity) => entity.getComponent(Sprite) === this)
         .forEach((entity) => {
           const position = entity.getComponent(Position);

@@ -1,8 +1,8 @@
-import { entitiesWithComponents } from "../entities/Entity";
+import { entitiesForComponents } from "../entities/Entity";
 import Sprite from "../components/Sprite";
 
 const animate = (delta: number, time: number) => {
-  const entities = entitiesWithComponents([Sprite]);
+  const entities = entitiesForComponents([Sprite]);
 
   entities.forEach((entity) => {
     const sprite = entity.getComponent(Sprite);
