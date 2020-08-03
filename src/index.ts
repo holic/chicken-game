@@ -15,7 +15,19 @@ const player = new Entity([
 ]);
 
 const npc = new Entity([
-  new Position(60, 60),
+  new Position(80, 60),
+  new Sprite("leghornChick"),
+  new Wanderer(),
+]);
+
+const npc2 = new Entity([
+  new Position(40, 60),
+  new Sprite("leghornChick"),
+  new Wanderer(),
+]);
+
+const npc3 = new Entity([
+  new Position(50, 100),
   new Sprite("leghornChick"),
   new Wanderer(),
 ]);

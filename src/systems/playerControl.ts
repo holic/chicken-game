@@ -26,15 +26,19 @@ const playerControl = (delta: number, time: number) => {
     if (keysDown.has("ArrowRight")) {
       sprite.requestedFacing = Facing.Right;
       sprite.requestedState = State.Walking;
+      position.lastMovement = time;
     } else if (keysDown.has("ArrowLeft")) {
       sprite.requestedFacing = Facing.Left;
       sprite.requestedState = State.Walking;
+      position.lastMovement = time;
     } else if (keysDown.has("ArrowUp")) {
       sprite.requestedFacing = Facing.Up;
       sprite.requestedState = State.Walking;
+      position.lastMovement = time;
     } else if (keysDown.has("ArrowDown")) {
       sprite.requestedFacing = Facing.Down;
       sprite.requestedState = State.Walking;
+      position.lastMovement = time;
     } else {
       sprite.requestedState = State.Idle;
     }
