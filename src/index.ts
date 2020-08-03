@@ -6,6 +6,7 @@ import Wanderer from "./components/Wanderer";
 import render from "./systems/render";
 import keyboardControl from "./systems/keyboardControl";
 import wander from "./systems/wander";
+import animate from "./systems/animate";
 
 const player = new Entity([
   new Position(30, 30),
@@ -19,7 +20,7 @@ const npc = new Entity([
   new Wanderer(),
 ]);
 
-const systems = [keyboardControl, wander, render];
+const systems = [keyboardControl, wander, animate, render];
 
 let lastTime = performance.now();
 
