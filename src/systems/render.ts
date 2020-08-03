@@ -10,7 +10,15 @@ const canvas =
     return el;
   })();
 
-const render = () => {
+let lastRender: number = 0;
+
+const render = (delta: number, time: number) => {
+  // Pin to 60 FPS
+  if (time - lastRender < 1000 / 60) {
+    return;
+  }
+  lastRender = time;
+
   const context = canvas.getContext("2d");
   if (!context) return;
 

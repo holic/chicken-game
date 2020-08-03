@@ -23,30 +23,20 @@ const playerControl = (delta: number, time: number) => {
     const position = entity.getComponent(Position);
     const sprite = entity.getComponent(Sprite);
 
-    // if (time - position.lastMovement < (1000 / 8) * animationFrames) {
-    //   return;
-    // }
-
-    if (sprite.state !== State.Idle) {
-      return;
-    }
-
-    if (keysDown.has("ArrowRight") && sprite.facing !== Facing.Right) {
-      sprite.facing = Facing.Right;
-      sprite.state = State.Walking;
-      position.lastMovement = time;
-    } else if (keysDown.has("ArrowLeft") && sprite.facing !== Facing.Left) {
-      sprite.facing = Facing.Left;
-      sprite.state = State.Walking;
-      position.lastMovement = time;
-    } else if (keysDown.has("ArrowUp") && sprite.facing !== Facing.Up) {
-      sprite.facing = Facing.Up;
-      sprite.state = State.Walking;
-      position.lastMovement = time;
-    } else if (keysDown.has("ArrowDown") && sprite.facing !== Facing.Down) {
-      sprite.facing = Facing.Down;
-      sprite.state = State.Walking;
-      position.lastMovement = time;
+    if (keysDown.has("ArrowRight")) {
+      sprite.requestedFacing = Facing.Right;
+      sprite.requestedState = State.Walking;
+    } else if (keysDown.has("ArrowLeft")) {
+      sprite.requestedFacing = Facing.Left;
+      sprite.requestedState = State.Walking;
+    } else if (keysDown.has("ArrowUp")) {
+      sprite.requestedFacing = Facing.Up;
+      sprite.requestedState = State.Walking;
+    } else if (keysDown.has("ArrowDown")) {
+      sprite.requestedFacing = Facing.Down;
+      sprite.requestedState = State.Walking;
+    } else {
+      sprite.requestedState = State.Idle;
     }
   });
 };

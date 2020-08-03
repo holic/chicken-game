@@ -2,6 +2,7 @@ import Component from "./Component";
 import assets from "../assets";
 import SpriteSheet from "../assets/SpriteSheet";
 import { entitiesWithComponents } from "../entities/Entity";
+import Position from "./Position";
 
 enum State {
   Idle = "idle",
@@ -18,7 +19,9 @@ enum Facing {
 class Sprite extends Component {
   spriteSheet: SpriteSheet;
 
+  requestedState: State = State.Idle;
   state: State = State.Idle;
+  requestedFacing: Facing = Facing.Down;
   facing: Facing = Facing.Down;
   frame: number = 0;
   lastFrameUpdate: number = 0;
@@ -59,13 +62,19 @@ class Sprite extends Component {
     }
   }
 
+  get entity() {
+    const entities = entitiesWithComponents([Sprite]);
+    const entity = entities.find((ent) => ent.getComponent(Sprite) === this);
+    return entity;
+  }
+
   reset() {
     this.frame = 0;
     this.lastFrameUpdate = 0;
   }
 
   update(delta: number, time: number) {
-    // Pin to 8 fps
+    // Pin to 8 FPS
     if (time - this.lastFrameUpdate < 1000 / 8) {
       return;
     }
@@ -76,12 +85,37 @@ class Sprite extends Component {
     this.frame += 1;
     this.lastFrameUpdate = time;
 
-    // Move to idle once we reach the last frame
+    // Move
+    if (
+      (this.facing === Facing.Down && this.frame === 3) ||
+      (this.facing !== Facing.Down && this.frame === 2)
+    ) {
+      entitiesWithComponents([Position, Sprite])
+        .filter((entity) => entity.getComponent(Sprite) === this)
+        .forEach((entity) => {
+          const position = entity.getComponent(Position);
+          if (this.facing === Facing.Up) {
+            position.y -= 3;
+          } else if (this.facing === Facing.Down) {
+            position.y += 3;
+          } else if (this.facing === Facing.Left) {
+            position.x -= 3;
+          } else if (this.facing === Facing.Right) {
+            position.x += 3;
+          }
+        });
+    }
+
     const frames = this.spriteSheet.animations[animation];
-    if (this.frame >= frames.length) {
-      this.state = State.Idle;
-      this.reset();
-      return;
+    if (
+      // If we're on the last frame and still moving, cut the animation short by one frame
+      (this.state === this.requestedState && this.frame >= frames.length - 1) ||
+      // Otherwise reset the animation
+      this.frame >= frames.length
+    ) {
+      this.state = this.requestedState;
+      this.facing = this.requestedFacing;
+      this.frame = 0;
     }
   }
 }
