@@ -10,7 +10,7 @@ import animate from "./systems/animate";
 
 const player = new Entity([
   new Position(30, 30),
-  new Sprite("leghornPullet"),
+  new Sprite("leghornHen"),
   new PlayerControlled(),
 ]);
 
@@ -28,7 +28,7 @@ const npc2 = new Entity([
 
 const npc3 = new Entity([
   new Position(50, 100),
-  new Sprite("leghornChick"),
+  new Sprite("leghornPullet"),
   new Wanderer(),
 ]);
 
