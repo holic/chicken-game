@@ -48,7 +48,7 @@ const assets: Assets = {
   leghornPullet: new SpriteSheet({
     imagePath: leghornPullet,
     frameWidth: 16,
-    frameHeight: 24,
+    frameHeight: 22,
     animations: {
       idleDown: [0],
       idleLeft: [9],
