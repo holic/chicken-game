@@ -29,13 +29,13 @@ const render = (delta: number, time: number) => {
   const entities = entitiesForComponents([Position, Sprite]);
 
   entities.sort((entityA, entityB) => {
-    const { y: ay, lastMovement: ax } = entityA.getComponent(Position);
-    const { y: by, lastMovement: bx } = entityB.getComponent(Position);
+    const positionA = entityA.getComponent(Position);
+    const positionB = entityB.getComponent(Position);
 
-    if (ay !== by) {
-      return ay - by;
+    if (positionA.y !== positionB.y) {
+      return positionA.y - positionB.y;
     }
-    return ax - bx;
+    return positionA.lastMovement - positionB.lastMovement;
   });
 
   entities.forEach((entity) => {

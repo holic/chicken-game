@@ -2,7 +2,6 @@ import Component from "./Component";
 import assets from "../assets";
 import SpriteSheet from "../assets/SpriteSheet";
 import { entitiesForComponents } from "../entities/Entity";
-import Position from "./Position";
 
 enum State {
   Idle = "idle",
