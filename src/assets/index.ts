@@ -18,10 +18,26 @@ const assets: Assets = {
       idleLeft: [3],
       idleRight: [6],
       idleUp: [9],
-      walkDown: [1, 0, 2, 0, 1],
-      walkLeft: [4, 3, 5, 3, 4],
-      walkRight: [7, 6, 8, 6, 7],
-      walkUp: [10, 9, 11, 9, 10],
+      walkDown: {
+        frames: [1, 0, 2, 0, 1],
+        loopStart: 0,
+        loopEnd: 3,
+      },
+      walkLeft: {
+        frames: [1, 0, 2, 0, 1].map((i) => i + 3),
+        loopStart: 0,
+        loopEnd: 3,
+      },
+      walkRight: {
+        frames: [1, 0, 2, 0, 1].map((i) => i + 6),
+        loopStart: 0,
+        loopEnd: 3,
+      },
+      walkUp: {
+        frames: [1, 0, 2, 0, 1].map((i) => i + 9),
+        loopStart: 0,
+        loopEnd: 3,
+      },
     },
     entityUpdate: (entity) => {
       const position = entity.getComponent(Position);
@@ -54,10 +70,26 @@ const assets: Assets = {
       idleLeft: [4],
       idleRight: [8],
       idleUp: [12],
-      walkDown: [0, 1, 2, 1, 0, 3, 1, 2, 1, 0],
-      walkLeft: [0, 1, 2, 1, 0, 3, 1, 2, 1, 0].map((i) => i + 4),
-      walkRight: [0, 1, 2, 1, 0, 3, 1, 2, 1, 0].map((i) => i + 8),
-      walkUp: [0, 1, 2, 1, 0, 3, 1, 2, 1, 0].map((i) => i + 12),
+      walkDown: {
+        frames: [0, 1, 2, 1, 0, 3, 1, 2, 1, 0],
+        loopStart: 2,
+        loopEnd: 6,
+      },
+      walkLeft: {
+        frames: [0, 1, 2, 1, 0, 3, 1, 2, 1, 0].map((i) => i + 4),
+        loopStart: 2,
+        loopEnd: 6,
+      },
+      walkRight: {
+        frames: [0, 1, 2, 1, 0, 3, 1, 2, 1, 0].map((i) => i + 8),
+        loopStart: 2,
+        loopEnd: 6,
+      },
+      walkUp: {
+        frames: [0, 1, 2, 1, 0, 3, 1, 2, 1, 0].map((i) => i + 12),
+        loopStart: 2,
+        loopEnd: 6,
+      },
     },
     entityUpdate: (entity) => {
       const position = entity.getComponent(Position);

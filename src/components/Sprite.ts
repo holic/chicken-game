@@ -82,13 +82,18 @@ class Sprite extends Component {
       .filter((entity) => entity.getComponent(Sprite) === this)
       .map(this.spriteSheet.entityUpdate);
 
-    const frames = this.spriteSheet.animations[animation];
-    if (
-      // If we're on the last frame and still moving, cut the animation short by one frame
-      (this.state === this.requestedState && this.frame >= frames.length - 1) ||
-      // Otherwise reset the animation
-      this.frame >= frames.length
-    ) {
+    const { frames, loopStart, loopEnd } = this.spriteSheet.animations[
+      animation
+    ];
+
+    // If we're on the last frame of the loop and still moving, loop
+    if (this.state === this.requestedState && this.frame > loopEnd) {
+      this.state = this.requestedState;
+      this.facing = this.requestedFacing;
+      this.frame = loopStart;
+    }
+    // Otherwise reset the animation
+    else if (this.frame >= frames.length) {
       this.state = this.requestedState;
       this.facing = this.requestedFacing;
       this.frame = 0;

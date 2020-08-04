@@ -46,7 +46,7 @@ const render = (delta: number, time: number) => {
     const width = spriteSheet.frameWidth;
     const height = spriteSheet.frameHeight;
 
-    const animationFrame = spriteSheet.animations[animation][frame];
+    const animationFrame = spriteSheet.animations[animation].frames[frame];
     const framesPerRow = Math.floor(spriteSheet.image.width / width);
     const frameX = animationFrame % framesPerRow;
     const frameY = Math.floor(animationFrame / framesPerRow);
