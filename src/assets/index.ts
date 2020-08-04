@@ -48,16 +48,16 @@ const assets: Assets = {
   leghornPullet: new SpriteSheet({
     imagePath: leghornPullet,
     frameWidth: 16,
-    frameHeight: 22,
+    frameHeight: 17,
     animations: {
       idleDown: [0],
-      idleLeft: [9],
-      idleRight: [18],
-      idleUp: [27],
-      walkDown: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-      walkLeft: [9, 10, 11, 12, 13, 14, 15, 16, 17],
-      walkRight: [18, 19, 20, 21, 22, 23, 24, 25, 26],
-      walkUp: [27, 28, 29, 30, 31, 32, 33, 34, 35],
+      idleLeft: [4],
+      idleRight: [8],
+      idleUp: [12],
+      walkDown: [0, 1, 2, 1, 0, 3, 1, 2, 1, 0],
+      walkLeft: [0, 1, 2, 1, 0, 3, 1, 2, 1, 0].map((i) => i + 4),
+      walkRight: [0, 1, 2, 1, 0, 3, 1, 2, 1, 0].map((i) => i + 8),
+      walkUp: [0, 1, 2, 1, 0, 3, 1, 2, 1, 0].map((i) => i + 12),
     },
     entityUpdate: (entity) => {
       const position = entity.getComponent(Position);
