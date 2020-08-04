@@ -79,26 +79,9 @@ class Sprite extends Component {
     this.frame += 1;
     this.lastFrameUpdate = time;
 
-    // Move
-    if (
-      (this.facing === Facing.Down && this.frame === 3) ||
-      (this.facing !== Facing.Down && this.frame === 2)
-    ) {
-      entitiesForComponents([Position, Sprite])
-        .filter((entity) => entity.getComponent(Sprite) === this)
-        .forEach((entity) => {
-          const position = entity.getComponent(Position);
-          if (this.facing === Facing.Up) {
-            position.y -= 3;
-          } else if (this.facing === Facing.Down) {
-            position.y += 3;
-          } else if (this.facing === Facing.Left) {
-            position.x -= 3;
-          } else if (this.facing === Facing.Right) {
-            position.x += 3;
-          }
-        });
-    }
+    entitiesForComponents([Sprite])
+      .filter((entity) => entity.getComponent(Sprite) === this)
+      .map(this.spriteSheet.entityUpdate);
 
     const frames = this.spriteSheet.animations[animation];
     if (

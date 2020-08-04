@@ -1,3 +1,5 @@
+import Entity from "../entities/Entity";
+
 interface Arguments {
   imagePath: string;
   frameWidth: number;
@@ -5,6 +7,7 @@ interface Arguments {
   animations: {
     [name: string]: number[];
   };
+  entityUpdate?: (entity: Entity) => void;
 }
 
 class SpriteSheet {
@@ -16,6 +19,7 @@ class SpriteSheet {
   animations: {
     [name: string]: number[];
   };
+  entityUpdate: (entity: Entity) => void;
 
   constructor(args: Arguments) {
     this.image = new Image();
@@ -29,6 +33,7 @@ class SpriteSheet {
     this.frameWidth = args.frameWidth;
     this.frameHeight = args.frameHeight;
     this.animations = args.animations;
+    this.entityUpdate = args.entityUpdate || (() => {});
   }
 }
 
