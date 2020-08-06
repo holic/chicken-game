@@ -22,22 +22,22 @@ const assets: Assets = {
       walkDown: {
         frames: [1, 0, 2, 0, 1],
         loopStart: 0,
-        loopEnd: 3,
+        loopEnd: 2,
       },
       walkLeft: {
         frames: [1, 0, 2, 0, 1].map((i) => i + 3),
         loopStart: 0,
-        loopEnd: 3,
+        loopEnd: 2,
       },
       walkRight: {
         frames: [1, 0, 2, 0, 1].map((i) => i + 6),
         loopStart: 0,
-        loopEnd: 3,
+        loopEnd: 2,
       },
       walkUp: {
         frames: [1, 0, 2, 0, 1].map((i) => i + 9),
         loopStart: 0,
-        loopEnd: 3,
+        loopEnd: 2,
       },
     },
     entityUpdate: (entity) => {
@@ -124,23 +124,23 @@ const assets: Assets = {
       idleRight: [8],
       idleUp: [12],
       walkDown: {
-        frames: [0, 1, 2, 1, 0, 3, 1, 2, 1, 0],
-        loopStart: 2,
+        frames: [0, 1, 1, 0, 3, 1, 2, 1, 0],
+        loopStart: 3,
         loopEnd: 6,
       },
       walkLeft: {
-        frames: [0, 1, 2, 1, 0, 3, 1, 2, 1, 0].map((i) => i + 4),
-        loopStart: 2,
+        frames: [0, 1, 1, 0, 3, 1, 2, 1, 0].map((i) => i + 4),
+        loopStart: 3,
         loopEnd: 6,
       },
       walkRight: {
-        frames: [0, 1, 2, 1, 0, 3, 1, 2, 1, 0].map((i) => i + 8),
-        loopStart: 2,
+        frames: [0, 1, 1, 0, 3, 1, 2, 1, 0].map((i) => i + 8),
+        loopStart: 3,
         loopEnd: 6,
       },
       walkUp: {
-        frames: [0, 1, 2, 1, 0, 3, 1, 2, 1, 0].map((i) => i + 12),
-        loopStart: 2,
+        frames: [0, 1, 1, 0, 3, 1, 2, 1, 0].map((i) => i + 12),
+        loopStart: 3,
         loopEnd: 6,
       },
     },
@@ -151,8 +151,8 @@ const assets: Assets = {
       if (!sprite) return;
 
       if (
-        (sprite.facing === Facing.Down && sprite.frame === 6) ||
-        (sprite.facing !== Facing.Down && sprite.frame === 5)
+        (sprite.facing === Facing.Down && sprite.frame === 5) ||
+        (sprite.facing !== Facing.Down && sprite.frame === 4)
       ) {
         if (sprite.facing === Facing.Up) {
           position.y -= 3;
